@@ -1,0 +1,10 @@
+.editor {
+  display: flex;
+  flex-direction: row;
+}
+.ls {
+  min-width: 80%;
+}
+.rs {
+  min-width: 20%;
+}

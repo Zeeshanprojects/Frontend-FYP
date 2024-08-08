@@ -2,6 +2,7 @@ import { Blog1 } from "@/blogs/page";
 import { CTA2 } from "@/call-to-action/page";
 import { Case1 } from "@/cases/page";
 import { Contact1 } from "@/contact/page";
+import Editor from "@/editor/page";
 import { FAQ1 } from "@/faq/page";
 import { Feature6 } from "@/features/page";
 import { Footer1 } from "@/footer/page";
@@ -16,6 +17,9 @@ import { Hero3 } from "@/section/page";
 import { SignUP } from "@/signup/page";
 import { Stats2 } from "@/stats/page";
 import { Testimonials1 } from "@/testimonials/page";
+
+
+
 import Image from "next/image";
 
 export default function Home() {
@@ -36,6 +40,7 @@ export default function Home() {
  <SignUP/>
 <Dashboard/>
    <LoginForm/>
+   <Editor/>
    <Footer1/>
    </>
   );

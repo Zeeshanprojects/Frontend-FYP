@@ -16,10 +16,8 @@ export const Hero3 = () => (
               This is the start of something!
             </h1>
             <p className="text-xl leading-relaxed tracking-tight text-muted-foreground max-w-md text-left">
-              Managing a small business today is already tough. Avoid further
-              complications by ditching outdated, tedious trade methods. Our
-              goal is to streamline SMB trade, making it easier and faster than
-              ever.
+            Browse through a large set of ready-made features or create one using AI.
+            No more waiting for integrations – bring your ideas to life.
             </p>
           </div>
           <div className="flex flex-row gap-4">
