@@ -3,9 +3,10 @@ import React, { useState, useEffect, useCallback } from "react";
 
 import axios from "axios";
 import MonacoEditor from "react-monaco-editor";
-import './editor.module.css'
+import styles from './editor.module.css'
 
 import useTraverseTree from "@/hooks/use-traverse-tree";
+import { Header1 } from "@/header/page";
 
 const FileSystem = ({ explorerData, handleInsertNode, handleFileClick }) => {
   const renderTree = (node) => (
@@ -50,6 +51,7 @@ const FeatureList = ({ features, onSelectFeatures }) => {
   };
 
   return (
+    
     <div>
       <h2>Features</h2>
       <ul>
@@ -256,33 +258,30 @@ function Editor() {
   };
 
   return (
-    <div className="editor">
-      <div className="ls">
-        <div className="row">
-          <div className="col-md-4">
-            <FileSystem
-              explorerData={explorerData}
-              handleInsertNode={insertNode}
-              handleFileClick={handleFileClick}
-            />
-          </div>
-          <div className="col-md-8">
-            <CodeEditor code={selectedFile?.code || ""} />
-          </div>
-        </div>
-      </div>
-      <div className="rs">
-        <FeatureList
-          features={features}
-          onSelectFeatures={handleSelectFeatures}
-        />
-        <button onClick={handleGenerateProject}>Generate Project</button>
-
-        {downloadPath && (
-          <button onClick={handleDownloadProject}>Download Project</button>
-        )}
-      </div>
+    
+    <div className="editor flex">
+  <div className="ls flex flex-1">
+    <FileSystem
+      explorerData={explorerData}
+      handleInsertNode={insertNode}
+      handleFileClick={handleFileClick}
+    />
+    <div className="flex-1">
+      <CodeEditor code={selectedFile?.code || ""} />
     </div>
+  </div>
+  <div className="rs flex flex-col items-center">
+    <FeatureList
+      features={features}
+      onSelectFeatures={handleSelectFeatures}
+    />
+    <button onClick={handleGenerateProject}>Generate Project</button>
+
+    {downloadPath && (
+      <button onClick={handleDownloadProject}>Download Project</button>
+    )}
+  </div>
+</div>
   );
 }
 

@@ -64,6 +64,16 @@ const navigationItems = [
         },
     ],
     },
+    {
+        title: "Editor",
+        description: "Managing a small business today is already tough.",
+        items: [
+            {
+            title: "Editor",
+            href: "/editor",
+            },
+        ],
+        },
 ];
 
 const [isOpen, setOpen] = useState(false);
