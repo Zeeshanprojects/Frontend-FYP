@@ -12,12 +12,11 @@ export const Hero1 = () => (
         </div>
         <div className="flex gap-4 flex-col">
           <h1 className="text-5xl md:text-7xl max-w-2xl tracking-tighter text-center font-regular">
-            This is the start of something new
+          Build backend tasks
+          in minutes
           </h1>
           <p className="text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground max-w-2xl text-center">
-            Managing a small business today is already tough. Avoid further
-            complications by ditching outdated, tedious trade methods. Our goal
-            is to streamline SMB trade, making it easier and faster than ever.
+          Building backend tasks can be complex, but our codeless solutions simplify the process. With our low-code platforms, you can quickly create backend services without extensive coding. Our AI-powered tools automate tasks and optimize processes, saving you time and effort.
           </p>
         </div>
         <div className="flex flex-row gap-3">
