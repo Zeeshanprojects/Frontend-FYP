@@ -1,9 +1,15 @@
 import { Check, Minus, MoveRight, PhoneCall } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { FAQ1 } from "@/faq/page";
+import { Header1 } from "@/header/page";
+import { Footer1 } from "@/footer/page";
+
 
 export const Pricing2 = () => (
-  <div className="w-full py-20 lg:py-40">
+  <div>
+    <Header1/>
+    <div className="w-full py-20 lg:py-40">
     <div className="container mx-auto">
       <div className="flex text-center justify-center items-center gap-4 flex-col">
         <Badge>Pricing</Badge>
@@ -24,7 +30,7 @@ export const Pricing2 = () => (
               than ever for everyone and everywhere.
             </p>
             <p className="flex flex-col lg:flex-row lg:items-center gap-2 text-xl mt-8">
-              <span className="text-4xl">$40</span>
+              <span className="text-4xl">$0</span>
               <span className="text-sm text-muted-foreground"> / month</span>
             </p>
             <Button variant="outline" className="gap-4 mt-8">
@@ -38,7 +44,7 @@ export const Pricing2 = () => (
               than ever for everyone and everywhere.
             </p>
             <p className="flex flex-col lg:flex-row lg:items-center gap-2 text-xl mt-8">
-              <span className="text-4xl">$40</span>
+              <span className="text-4xl">$14</span>
               <span className="text-sm text-muted-foreground"> / month</span>
             </p>
             <Button className="gap-4 mt-8">
@@ -145,4 +151,12 @@ export const Pricing2 = () => (
       </div>
     </div>
   </div>
+
+  <FAQ1/>
+<Footer1/>
+  </div>
+  
 );
+
+
+export default Pricing2
