@@ -24,7 +24,7 @@ export const Pricing2 = () => (
               than ever for everyone and everywhere.
             </p>
             <p className="flex flex-col lg:flex-row lg:items-center gap-2 text-xl mt-8">
-              <span className="text-4xl">$40</span>
+              <span className="text-4xl">$0</span>
               <span className="text-sm text-muted-foreground"> / month</span>
             </p>
             <Button variant="outline" className="gap-4 mt-8">
@@ -38,7 +38,7 @@ export const Pricing2 = () => (
               than ever for everyone and everywhere.
             </p>
             <p className="flex flex-col lg:flex-row lg:items-center gap-2 text-xl mt-8">
-              <span className="text-4xl">$40</span>
+              <span className="text-4xl">$14</span>
               <span className="text-sm text-muted-foreground"> / month</span>
             </p>
             <Button className="gap-4 mt-8">

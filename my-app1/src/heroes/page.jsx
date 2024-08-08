@@ -1,6 +1,7 @@
 import { MoveRight, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+
 export const Hero1 = () => (
   <div className="w-full">
     <div className="container mx-auto">
