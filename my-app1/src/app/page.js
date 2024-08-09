@@ -3,7 +3,7 @@ import { CTA2 } from "@/call-to-action/page";
 import { Case1 } from "@/cases/page";
 import { Contact1 } from "@/contact/page";
 
-import { FAQ1 } from "@/faq/page";
+
 import { Feature6 } from "@/features/page";
 import { Footer1 } from "@/footer/page";
 import { Header1 } from "@/header/page";
@@ -30,7 +30,7 @@ export default function Home() {
       <Feature6 />
       <Stats2 />
       <CTA2 />
-      <FAQ1 />
+   
       <Contact1 />
       <Dashboard />
       <Footer1 />
