@@ -60,20 +60,18 @@ export const Testimonials1 = () => {
             <CarouselContent>
               {Array.from({ length: 15 }).map((_, index) => (
                 <CarouselItem className="lg:basis-1/3" key={index}>
-                  <div className={`rounded-md h-60 lg:col-span-1 p-4 aspect-video flex justify-between flex-col ${bgColors[index % bgColors.length]}`}>
-                    <img src="/customer.png" alt="Small Icon" className="w-8 h-8 rounded-full mb-4" /> {/* Adjusted size */}
+                  <div className={`rounded-md p-4 flex flex-col justify-between ${bgColors[index % bgColors.length]} h-48`}>
+                    <img src="/customer.png" alt="Small Icon" className="w-8 h-8 rounded-full mb-4" />
                     <div className="flex flex-col gap-4">
                       <div className="flex flex-col">
-                        <h3 className="text-xl tracking-tight">
-                          Best decision
-                        </h3>
-                        <p className="text-muted-foreground max-w-xs text-base">
+                        <h3 className="text-xl tracking-tight">Best decision</h3>
+                        <p className="text-muted-foreground text-base">
                           Our goal was to streamline SMB trade, making it easier
                           and faster than ever and we did it together.
                         </p>
                       </div>
                       <p className="flex flex-row gap-2 text-sm items-center">
-                        <span className="text-muted-foreground">By</span>{" "}
+                        <span className="text-muted-foreground">By</span>
                         <Avatar className="h-6 w-6">
                           <AvatarImage src="https://github.com/shadcn.png" />
                           <AvatarFallback>CN</AvatarFallback>
