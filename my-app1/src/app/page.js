@@ -38,7 +38,7 @@ export default function Home() {
       
       <FAQ1 />
       <Contact1 />
-      <SignUP />
+      
       <Dashboard />
      
    
