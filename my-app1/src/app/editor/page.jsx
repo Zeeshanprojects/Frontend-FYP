@@ -53,6 +53,7 @@ const FeatureList = ({ features, onSelectFeatures }) => {
   return (
     
     <div>
+    
       <h2>Features</h2>
       <ul>
         {features.map((feature) => (

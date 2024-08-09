@@ -1,6 +1,6 @@
 import { MoveRight, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
+import Link from "next/link";
 
 export const Hero1 = () => (
   <div className="w-full ">
@@ -22,8 +22,8 @@ export const Hero1 = () => (
         </div>
         <div className="flex flex-row gap-3">
          
-          <Button size="lg" className="gap-4">
-            Sign up here <MoveRight className="w-4 h-4" />
+        <Button>
+            <Link href="/signup">Get Started for Free</Link>
           </Button>
         </div>
       </div>

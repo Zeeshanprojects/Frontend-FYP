@@ -9,7 +9,7 @@ import { Footer1 } from "@/footer/page";
 import { Header1 } from "@/header/page";
 import { Hero1 } from "@/heroes/page";
 
-import { Dashboard } from "@/playground/page";
+
 
 import { Hero3 } from "@/section/page";
 
@@ -32,7 +32,7 @@ export default function Home() {
       <CTA2 />
    
       <Contact1 />
-      <Dashboard />
+ 
       <Footer1 />
     </>
   );
