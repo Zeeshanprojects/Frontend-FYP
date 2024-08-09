@@ -11,9 +11,8 @@ import { Hero1 } from "@/heroes/page";
 
 import { Dashboard } from "@/playground/page";
 
-
 import { Hero3 } from "@/section/page";
-import { SignUP } from "@/signup/page";
+
 import { Stats2 } from "@/stats/page";
 import { Testimonials1 } from "@/testimonials/page";
 
@@ -23,25 +22,17 @@ export default function Home() {
   return (
     <>
       <Header1 />
-
       <Hero1 />
       <Blog1 />
-    
       <Hero3 />
       <Testimonials1 />
       <Case1 />
-     
       <Feature6 />
-      
       <Stats2 />
       <CTA2 />
-      
       <FAQ1 />
       <Contact1 />
-      <SignUP />
       <Dashboard />
-     
-   
       <Footer1 />
     </>
   );
