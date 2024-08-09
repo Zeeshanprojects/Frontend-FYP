@@ -1,5 +1,4 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
 import {
 NavigationMenu,
@@ -14,68 +13,62 @@ import { useState } from "react";
 import Link from "next/link";
 
 export const Header1 = () => {
-const navigationItems = [
-    {
-    title: "Home",
-    href: "/",
-    description: "",
-    },
-    {
-    title: "Product",
-    description: "Managing a small business today is already tough.",
-    items: [
+    const navigationItems = [
         {
-        title: "Reports",
-        href: "/reports",
+            title: "Home",
+            href: "/", // Redirects to the home page
+            description: "",
+          },
+        {
+            title: "Product",
+            description: "Managing a small business today is already tough.",
+            items: [
+                {
+                    title: "Reports",
+                    href: "/reports", // Redirects to the reports page
+                },
+                {
+                    title: "Statistics",
+                    href: "/statistics", // Redirects to the statistics page
+                },
+                {
+                    title: "Dashboards",
+                    href: "/dashboards", // Redirects to the dashboards page
+                },
+                {
+                    title: "Recordings",
+                    href: "/recordings", // Redirects to the recordings page
+                },
+            ],
         },
         {
-        title: "Statistics",
-        href: "/statistics",
+            title: "Company",
+            description: "Managing a small business today is already tough.",
+            items: [
+                {
+                    title: "About us",
+                    href: "/about", // Redirects to the about us page
+                },
+                {
+                    title: "Fundraising",
+                    href: "/fundraising", // Redirects to the fundraising page
+                },
+                {
+                    title: "Investors",
+                    href: "/investors", // Redirects to the investors page
+                },
+                {
+                    title: "Contact us",
+                    href: "/contact", // Redirects to the contact us page
+                },
+            ],
         },
         {
-        title: "Dashboards",
-        href: "/dashboards",
-        },
-        {
-        title: "Recordings",
-        href: "/recordings",
-        },
-    ],
-    },
-    {
-    title: "Company",
-    description: "Managing a small business today is already tough.",
-    items: [
-        {
-        title: "About us",
-        href: "/about",
-        },
-        {
-        title: "Fundraising",
-        href: "/fundraising",
-        },
-        {
-        title: "Investors",
-        href: "/investors",
-        },
-        {
-        title: "Contact us",
-        href: "/contact",
-        },
-    ],
-    },
-    {
-        title: "Editor",
-        description: "Managing a small business today is already tough.",
-        items: [
-            {
             title: "Editor",
-            href: "/editor",
-            },
-        ],
+            href: "/editor", // Redirects to the editor page
         },
-];
-
+    ];
+    
 const [isOpen, setOpen] = useState(false);
 return (
     <header className="w-full z-40 fixed top-0 left-0 bg-background">
@@ -131,16 +124,24 @@ return (
         </NavigationMenu>
         </div>
         <div className="flex lg:justify-center">
-        <p className="font-semibold">CODELESS BACKEND SOLUTIONS</p>
-        </div>
-        <div className="flex justify-end w-full gap-4">
-        <Button variant="ghost" className="hidden md:inline">
-            Book a demo
-        </Button>
-        <div className="border-r hidden md:inline"></div>
-        <Button variant="outline">Sign in</Button>
-        <Button>Get started</Button>
-        </div>
+ 
+    <p className="font-semibold cursor-pointer">
+      CODELESS BACKEND SOLUTIONS
+    </p>
+  
+</div>
+<div className="flex justify-end w-full gap-4">
+  <Button variant="ghost" className="hidden md:inline">
+    <Link href="#">Book a demo</Link>
+  </Button>
+  <div className="border-r hidden md:inline"></div>
+  <Button variant="outline">
+    <Link href="/login">Sign in</Link>
+  </Button>
+  <Button>
+    <Link href="/signup">Get started</Link>
+  </Button>
+</div>
         <div className="flex w-12 shrink lg:hidden items-end justify-end">
         <Button variant="ghost" onClick={() => setOpen(!isOpen)}>
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}

@@ -21,7 +21,7 @@ export const Footer1 = () => {
         },
         
         {
-          title: "Term and Cnditin",
+          title: "Term and Condition",
           href: "/term-and-condition",
         },
       ]
