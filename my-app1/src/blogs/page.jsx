@@ -1,8 +1,8 @@
 import { MoveRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
- 
+
 export const Blog1 = () => (
-  <div className="w-full py-20 lg:py-40 bg-black text-white">
+  <div className="w-full py-20 ">
     <div className="container mx-auto flex flex-col gap-14">
       <div className="flex w-full flex-col sm:flex-row sm:justify-between sm:items-center gap-8">
         <h4 className="text-3xl md:text-5xl tracking-tighter max-w-xl font-regular">
@@ -18,7 +18,7 @@ export const Blog1 = () => (
             1/0
           </div>
           <h3 className="text-xl tracking-tight">Custom APIs</h3>
-          <p className="text-muted-foreground text-white">
+          <p className="text-muted-foreground text-base">
             Flexibility with Custom APIs
           </p>
         </div>
@@ -27,7 +27,7 @@ export const Blog1 = () => (
             30+
           </div>
           <h3 className="text-xl tracking-tight">API Library</h3>
-          <p className="text-muted-foreground text-white">
+          <p className="text-muted-foreground text-base">
             Comprehensive set of ready-made features
           </p>
         </div>
@@ -36,7 +36,7 @@ export const Blog1 = () => (
             100%
           </div>
           <h3 className="text-xl tracking-tight">Deployable File</h3>
-          <p className="text-muted-foreground text-white">
+          <p className="text-muted-foreground text-base">
             Easily export and deploy your applications
           </p>
         </div>
@@ -45,7 +45,7 @@ export const Blog1 = () => (
             2X
           </div>
           <h3 className="text-xl tracking-tight">AI Bot</h3>
-          <p className="text-muted-foreground text-white">
+          <p className="text-muted-foreground text-base">
             Speed with integrated AI bot
           </p>
         </div>

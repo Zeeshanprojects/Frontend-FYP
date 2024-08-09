@@ -3,24 +3,25 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 export const CTA2 = () => (
-  <div className="w-full py-20 lg:py-40 bg-black text-white ">
+  <div className="w-full py-20  bg-muted">
     <div className="container mx-auto">
       <div className="flex flex-col text-center py-14 gap-4 items-center">
         <div>
-          <Badge className="bg-white text-black">Get started</Badge>
+          <Badge>Get started</Badge>
         </div>
         <div className="flex flex-col gap-2">
           <h3 className="text-3xl md:text-5xl tracking-tighter max-w-xl font-regular">
             Try our platform today!
           </h3>
-          <p className="text-lg leading-relaxed tracking-tight text-gray-300 max-w-xl">
+          <p className="text-lg leading-relaxed tracking-tight text-muted-foreground max-w-xl">
             Try CLBS for as long as you like with our free Starter plan.
             Purchase a paid Site plan to publish, host, and unlock additional
             features.
           </p>
         </div>
         <div className="flex flex-row gap-4">
-          <Button className="gap-4 bg-white text-black">
+         
+          <Button className="gap-4">
             Sign up here <MoveRight className="w-4 h-4" />
           </Button>
         </div>
