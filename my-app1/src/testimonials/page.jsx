@@ -60,7 +60,7 @@ export const Testimonials1 = () => {
             <CarouselContent>
               {Array.from({ length: 15 }).map((_, index) => (
                 <CarouselItem className="lg:basis-1/3" key={index}>
-                  <div className={`rounded-md p-4 flex flex-col justify-between ${bgColors[index % bgColors.length]} h-48`}>
+                  <div className={`rounded-md p-4 flex flex-col justify-between ${bgColors[index % bgColors.length]} h-64`}>
                     <img src="/customer.png" alt="Small Icon" className="w-8 h-8 rounded-full mb-4" />
                     <div className="flex flex-col gap-4">
                       <div className="flex flex-col">

@@ -1,9 +1,9 @@
-import { MoveRight } from "lucide-react";
+import { MoveRight, PhoneCall } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 export const CTA2 = () => (
-  <div className="w-full min-h-screen bg-black text-white flex items-center">
+  <div className="w-full py-20 lg:py-40 bg-black text-white ">
     <div className="container mx-auto">
       <div className="flex flex-col text-center py-14 gap-4 items-center">
         <div>

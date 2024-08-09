@@ -2,9 +2,13 @@ import { Check, Minus, MoveRight, PhoneCall } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { FAQ1 } from "@/faq/page";
+import { Header1 } from "@/header/page";
+import { Footer1 } from "@/footer/page";
+
 
 export const Pricing2 = () => (
   <div>
+    <Header1/>
     <div className="w-full py-20 lg:py-40">
     <div className="container mx-auto">
       <div className="flex text-center justify-center items-center gap-4 flex-col">
@@ -149,7 +153,9 @@ export const Pricing2 = () => (
   </div>
 
   <FAQ1/>
+<Footer1/>
   </div>
+  
 );
 
 

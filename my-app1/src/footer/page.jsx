@@ -6,6 +6,25 @@ export const Footer1 = () => {
       title: "Home",
       href: "/",
       description: "",
+      items:[
+        {
+          title: "Pricing",
+          href: "/pricing",
+        },
+        {
+          title: "About US",
+          href: "/aboutus",
+        },
+        {
+          title: "Pricing",
+          href: "/pricing",
+        },
+        
+        {
+          title: "Term and Cnditin",
+          href: "/term-and-condition",
+        },
+      ]
     },
     {
       title: "Product",
@@ -60,22 +79,18 @@ export const Footer1 = () => {
           <div className="flex gap-8 flex-col items-start">
             <div className="flex gap-2 flex-col">
               <h2 className="text-3xl md:text-5xl tracking-tighter max-w-xl font-regular text-left">
-                TWBlocks™
+              CLBS
               </h2>
               <p className="text-lg max-w-lg leading-relaxed tracking-tight text-background/75 text-left">
-                Managing a small business today is already tough.
+              Low-Code Visual Backend Builder Powered by AI
               </p>
             </div>
             <div className="flex gap-20 flex-row">
               <div className="flex flex-col text-sm max-w-lg leading-relaxed tracking-tight text-background/75 text-left">
-                <p>1 Tailwind Way</p>
-                <p>Menlo Park</p>
-                <p>CA 94025</p>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laudantium error vero debitis eos animi modi perspiciatis rerum amet ab architecto ipsa ex, facilis vitae deserunt nesciunt. Impedit ab ut ipsa.</p>
+               
               </div>
-              <div className="flex flex-col text-sm max-w-lg leading-relaxed tracking-tight text-background/75 text-left">
-                <Link href="/">Terms of service</Link>
-                <Link href="/">Privacy Policy</Link>
-              </div>
+             
             </div>
           </div>
           <div className="grid lg:grid-cols-3 gap-10 items-start">
