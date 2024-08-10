@@ -1,8 +1,3 @@
-"use client";
-
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { useState } from "react";
-import { auth } from "@/firebase/config";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,31 +9,8 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useRouter } from "next/router";
 
-export function SignUp() {
-  const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [createUserWithEmailAndPassword, user, loading, error] =
-    useCreateUserWithEmailAndPassword(auth);
-
-  const handleSignUp = async () => {
-    try {
-      await createUserWithEmailAndPassword(email, password);
-      sessionStorage.setItem("user", true);
-      setEmail("");
-      setPassword("");
-      // Redirect or show success popup
-      setTimeout(() => {
-        alert("User registered successfully!");
-        router.push("/editor"); // Redirect to login page after success
-      }, 5000);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
+export function SignUP() {
   return (
     <div className="flex items-center justify-center min-h-screen">
       <Card className="mx-auto max-w-sm">
@@ -67,30 +39,22 @@ export function SignUp() {
                 type="email"
                 placeholder="m@example.com"
                 required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="grid gap-2">
               <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+              <Input id="password" type="password" />
             </div>
-            <Button type="button" onClick={handleSignUp} className="w-full">
+            <Button type="submit" className="w-full">
               Create an account
             </Button>
             <Button variant="outline" className="w-full">
-              Sign up with Google
+              Sign up with GitHub
             </Button>
           </div>
           <div className="mt-4 text-center text-sm">
             Already have an account?{" "}
-            <Link href="/login" className="underline">
+            <Link href="#" className="underline">
               Sign in
             </Link>
           </div>
@@ -100,4 +64,4 @@ export function SignUp() {
   );
 }
 
-export default SignUp;
+export default SignUP;

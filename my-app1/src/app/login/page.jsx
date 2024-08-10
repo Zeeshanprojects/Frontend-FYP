@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 export function LoginForm() {
+  
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100"> {/* Added wrapper */}
       <Card className="mx-auto max-w-sm">
