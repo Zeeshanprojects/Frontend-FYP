@@ -15,7 +15,7 @@ export const Contact1 = () => {
   const [date, setDate] = useState(new Date());
 
   return (
-    <div className="w-full py-20 lg:py-40">
+    <div className="w-full py-20 ">
       <div className="container max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-10">
           <div className="flex flex-col gap-6">
@@ -25,7 +25,7 @@ export const Contact1 = () => {
               </div>
               <div className="flex flex-col gap-2">
                 <h4 className="text-3xl md:text-5xl tracking-tighter max-w-xl text-left font-regular">
-                  Something new
+             Contact US
                 </h4>
                 <p className="text-lg leading-relaxed tracking-tight text-muted-foreground max-w-sm text-left">
                   Managing a small business today is already tough. Avoid

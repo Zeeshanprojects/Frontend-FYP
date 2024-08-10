@@ -1,8 +1,8 @@
 import { User } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-
+import { Button } from "@/components/ui/button";
 export const Feature6 = () => (
-  <div className="w-full py-20 lg:py-40">
+  <div className="w-full py-20 ">
     <div className="container mx-auto">
       <div className="flex flex-col gap-10">
         <div className="flex gap-4 flex-col items-start">
@@ -28,6 +28,11 @@ export const Feature6 = () => (
                 Learn more about our team, who work hard to deliver the best products and services.
                 We are committed to pushing boundaries and innovating for your success.
               </p>
+              <div className="flex flex-row gap-4 py-5">
+  <Button className="gap-2">
+    Sign up here
+  </Button>
+</div>
             </div>
           </div>
           <div className="bg-yellow-200 text-yellow-900 rounded-md aspect-square p-6 flex justify-between flex-col">

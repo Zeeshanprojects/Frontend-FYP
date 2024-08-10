@@ -9,7 +9,7 @@ export const Blog1 = () => (
           We’ll help you get started
         </h4>
         <Button className="gap-4">
-          View all articles <MoveRight className="w-4 h-4" />
+          Get Started for Free <MoveRight className="w-4 h-4" />
         </Button>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
