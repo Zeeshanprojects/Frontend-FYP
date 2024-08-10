@@ -1,12 +1,21 @@
-.editor {
+.editorWraper {
   display: flex;
   flex-direction: row;
+  flex-wrap: nowrap;
+  max-width: 100vw;
+  max-height: 100vh;
+}
+.fileSystem{
+  width: 20%;
+}
+.editor{
+  width: 80%;
 }
 .ls {
-  min-width: 80%;
+  /* max-width: 80%; */
 }
 .rs {
-  min-width: 20%;
+  max-width: 20%;
 }
 
 
