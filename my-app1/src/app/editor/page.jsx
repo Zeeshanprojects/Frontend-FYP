@@ -238,8 +238,17 @@ function Editor() {
 
   useEffect(() => {
     if (allFeatures && allFeatures.length > 0) {
-      setFeatures(allFeatures);
-      console.log(features);
+      
+      console.log("allFeatures------>", allFeatures);
+
+      function updateIds(array) {
+        return array.map((item, index) => ({
+          ...item,
+          id: index + 1, // Assign a new unique id based on the index
+        }));
+      }
+      setFeatures(updateIds(allFeatures));
+      console.log(updateIds(allFeatures));
     } else {
       axios
         .get("http://localhost:3002/features")
