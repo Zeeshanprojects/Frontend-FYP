@@ -1,7 +1,7 @@
-import Link from "next/link"
-import { CircleUser, Menu, Package2, Search } from "lucide-react"
+import Link from "next/link";
+import { CircleUser, Menu, Package2, Search } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -9,8 +9,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Checkbox } from "@/components/ui/checkbox"
+} from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,9 +18,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export function Dashboard() {
   return (
@@ -28,38 +28,38 @@ export function Dashboard() {
       <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
         <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
           <Link
-            href="#"
+            href="/"
             className="flex items-center gap-2 text-lg font-semibold md:text-base"
           >
             <Package2 className="h-6 w-6" />
             <span className="sr-only">Acme Inc</span>
           </Link>
           <Link
-            href="#"
+            href="/"
             className="text-muted-foreground transition-colors hover:text-foreground"
           >
-            Dashboard
+            Home
           </Link>
           <Link
-            href="#"
+            href="/orders"
             className="text-muted-foreground transition-colors hover:text-foreground"
           >
             Orders
           </Link>
           <Link
-            href="#"
+            href="/products"
             className="text-muted-foreground transition-colors hover:text-foreground"
           >
             Products
           </Link>
           <Link
-            href="#"
+            href="/customers"
             className="text-muted-foreground transition-colors hover:text-foreground"
           >
             Customers
           </Link>
           <Link
-            href="#"
+            href="/settings"
             className="text-foreground transition-colors hover:text-foreground"
           >
             Settings
@@ -79,37 +79,40 @@ export function Dashboard() {
           <SheetContent side="left">
             <nav className="grid gap-6 text-lg font-medium">
               <Link
-                href="#"
+                href="/"
                 className="flex items-center gap-2 text-lg font-semibold"
               >
                 <Package2 className="h-6 w-6" />
                 <span className="sr-only">Acme Inc</span>
               </Link>
               <Link
-                href="#"
+                href="/"
                 className="text-muted-foreground hover:text-foreground"
               >
                 Dashboard
               </Link>
               <Link
-                href="#"
+                href="/orders"
                 className="text-muted-foreground hover:text-foreground"
               >
                 Orders
               </Link>
               <Link
-                href="#"
+                href="/products"
                 className="text-muted-foreground hover:text-foreground"
               >
                 Products
               </Link>
               <Link
-                href="#"
+                href="/customers"
                 className="text-muted-foreground hover:text-foreground"
               >
                 Customers
               </Link>
-              <Link href="#" className="hover:text-foreground">
+              <Link
+                href="/settings"
+                className="hover:text-foreground"
+              >
                 Settings
               </Link>
             </nav>
@@ -149,36 +152,34 @@ export function Dashboard() {
           <h1 className="text-3xl font-semibold">Settings</h1>
         </div>
         <div className="mx-auto grid w-full max-w-6xl items-start gap-6 md:grid-cols-[180px_1fr] lg:grid-cols-[250px_1fr]">
-          <nav
-            className="grid gap-4 text-sm text-muted-foreground" x-chunk="dashboard-04-chunk-0"
-          >
-            <Link href="#" className="font-semibold text-primary">
+          <nav className="grid gap-4 text-sm text-muted-foreground">
+            <Link href="/settings/general" className="font-semibold text-primary">
               General
             </Link>
-            <Link href="#">Security</Link>
-            <Link href="#">Integrations</Link>
-            <Link href="#">Support</Link>
-            <Link href="#">Organizations</Link>
-            <Link href="#">Advanced</Link>
+            <Link href="/settings/security">Security</Link>
+            <Link href="/settings/integrations">Integrations</Link>
+            <Link href="/settings/support">Support</Link>
+            <Link href="/settings/organizations">Organizations</Link>
+            <Link href="/settings/advanced">Advanced</Link>
           </nav>
           <div className="grid gap-6">
-            <Card x-chunk="dashboard-04-chunk-1">
+            <Card>
               <CardHeader>
-                <CardTitle>Store Name</CardTitle>
+                <CardTitle>User Name</CardTitle>
                 <CardDescription>
-                  Used to identify your store in the marketplace.
+                  Used to identify you in the marketplace.
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <form>
-                  <Input placeholder="Store Name" />
+                  <Input placeholder="User Name" />
                 </form>
               </CardContent>
               <CardFooter className="border-t px-6 py-4">
                 <Button>Save</Button>
               </CardFooter>
             </Card>
-            <Card x-chunk="dashboard-04-chunk-2">
+            <Card>
               <CardHeader>
                 <CardTitle>Plugins Directory</CardTitle>
                 <CardDescription>
@@ -211,6 +212,7 @@ export function Dashboard() {
         </div>
       </main>
     </div>
-  )
+  );
 }
-export default Dashboard
+
+export default Dashboard;

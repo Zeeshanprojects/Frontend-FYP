@@ -13,6 +13,16 @@ import { useState } from "react";
 import Link from "next/link";
 
 export const Header1 = () => {
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      router.push("/"); // Redirect to home page after logout
+    } catch (error) {
+      console.error("Error logging out: ", error);
+    }
+  };
+
+
   const navigationItems = [
     {
       title: "Home",
@@ -23,8 +33,8 @@ export const Header1 = () => {
       href: "/editor", // Redirects to the editor page
     },
     {
-      title: "Pricing",
-      href: "/pricing", // Redirects to the pricing page
+      title: "playground",
+      href: "/playground", // Corrected to /contact-us
     },
     {
       title: "Product",
@@ -39,9 +49,10 @@ export const Header1 = () => {
           href: "/contact-us", // Corrected to /contact-us
         },
         {
-          title: "playground",
-          href: "/playground", // Corrected to /contact-us
+          title: "Pricing",
+          href: "/pricing", // Redirects to the pricing page
         },
+       
         {
           title: "Settings",
           href: "/settings", // Corrected to /settings
@@ -53,6 +64,8 @@ export const Header1 = () => {
   const [isOpen, setOpen] = useState(false);
 
   return (
+    
+    
     <header className="w-full z-40 fixed top-0 left-0 bg-background">
       <div className="container relative mx-auto min-h-20 flex gap-4 flex-row lg:grid lg:grid-cols-3 items-center">
         <div className="justify-start items-center gap-4 lg:flex hidden flex-row">
@@ -82,7 +95,7 @@ export const Header1 = () => {
                             </p>
                           </div>
                           <Button size="sm" className="mt-10">
-                            Book a call today
+                            Log Out
                           </Button>
                         </div>
                         <div className="flex flex-col text-sm h-full justify-end">
@@ -115,8 +128,8 @@ export const Header1 = () => {
           </p>
         </div>
         <div className="flex justify-end w-full gap-4">
-          <Button variant="ghost" className="hidden md:inline">
-            <Link href="#">Book a demo</Link>
+          <Button variant="ghost" className="hidden md:inline" onClick={handleLogout}>
+            <Link href="#">Log out</Link>
           </Button>
           <div className="border-r hidden md:inline"></div>
           <Button variant="outline">
