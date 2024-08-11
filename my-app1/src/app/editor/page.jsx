@@ -7,6 +7,7 @@ import styles from "./editor.module.css";
 
 import useTraverseTree from "@/hooks/use-traverse-tree";
 import { Header1 } from "@/header/page";
+import { useSelector } from "react-redux";
 
 const FileSystem = ({ explorerData, handleInsertNode, handleFileClick }) => {
   const renderTree = (node) => (
@@ -130,6 +131,10 @@ function Editor() {
   });
   const [selectedFile, setSelectedFile] = useState(null);
   const [selectedFeatures, setSelectedFeatures] = useState([]);
+
+  const { allFeatures } = useSelector((state) => state.features);
+
+  // use all features here when needed :)
 
   const { insertNode } = useTraverseTree();
 
