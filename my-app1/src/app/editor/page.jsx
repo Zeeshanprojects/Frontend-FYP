@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback } from "react";
 
 import axios from "axios";
 import MonacoEditor from "react-monaco-editor";
-import styles from './editor.module.css'
+import styles from "./editor.module.css";
 
 import useTraverseTree from "@/hooks/use-traverse-tree";
 import { Header1 } from "@/header/page";
@@ -19,7 +19,10 @@ const FileSystem = ({ explorerData, handleInsertNode, handleFileClick }) => {
           {node.items.map((child) => renderTree(child))}
         </>
       ) : (
-        <div onClick={() => handleFileClick(node)} style={{ cursor: "pointer" }}>
+        <div
+          onClick={() => handleFileClick(node)}
+          style={{ cursor: "pointer" }}
+        >
           📄 {node.name}
         </div>
       )}
@@ -51,9 +54,7 @@ const FeatureList = ({ features, onSelectFeatures }) => {
   };
 
   return (
-    
     <div>
-    
       <h2>Features</h2>
       <ul>
         {features.map((feature) => (
@@ -65,7 +66,9 @@ const FeatureList = ({ features, onSelectFeatures }) => {
                   <li key={key}>
                     <input
                       type="checkbox"
-                      checked={selectedFeatures[feature.id]?.includes(key) || false}
+                      checked={
+                        selectedFeatures[feature.id]?.includes(key) || false
+                      }
                       onChange={() => toggleFeature(feature.id, key)}
                     />
                     {key}
@@ -75,7 +78,9 @@ const FeatureList = ({ features, onSelectFeatures }) => {
             ) : (
               <input
                 type="checkbox"
-                checked={selectedFeatures[feature.id]?.includes("code") || false}
+                checked={
+                  selectedFeatures[feature.id]?.includes("code") || false
+                }
                 onChange={() => toggleFeature(feature.id, "code")}
               />
             )}
@@ -150,27 +155,31 @@ function Editor() {
           { id: "6", name: "README.md", isFolder: false, items: [] },
         ],
       };
-  
+
       // Loop through selectedFeatures to update explorerData
       Object.entries(selectedFeatures).forEach(([featureId, keys]) => {
         const feature = features.find((f) => f.id === parseInt(featureId));
         if (feature) {
-          if (typeof feature.code === 'object') {
+          if (typeof feature.code === "object") {
             // Handle nested features
             Object.keys(feature.code).forEach((key) => {
               if (keys.includes(key)) {
                 const routeFile = {
                   id: `${featureId}_${key}`,
-                  name: `${feature.name.toLowerCase().replace(/\s+/g, '_')}_${key}.js`,
+                  name: `${feature.name
+                    .toLowerCase()
+                    .replace(/\s+/g, "_")}_${key}.js`,
                   isFolder: false,
                   items: [],
                   code: feature.code[key],
                 };
                 newExplorerData.items[0].items.push(routeFile);
-  
+
                 const modelFile = {
                   id: `${featureId}_${key}_model`,
-                  name: `${feature.name.toLowerCase().replace(/\s+/g, '_')}_${key}_model.js`,
+                  name: `${feature.name
+                    .toLowerCase()
+                    .replace(/\s+/g, "_")}_${key}_model.js`,
                   isFolder: false,
                   items: [],
                   code: feature.schema,
@@ -178,33 +187,39 @@ function Editor() {
                 newExplorerData.items[1].items.push(modelFile);
               } else {
                 // Remove route file if not selected
-                const routeIndex = newExplorerData.items[0].items.findIndex(file => file.id === `${featureId}_${key}`);
+                const routeIndex = newExplorerData.items[0].items.findIndex(
+                  (file) => file.id === `${featureId}_${key}`
+                );
                 if (routeIndex !== -1) {
                   newExplorerData.items[0].items.splice(routeIndex, 1);
                 }
-  
+
                 // Remove model file if not selected
-                const modelIndex = newExplorerData.items[1].items.findIndex(file => file.id === `${featureId}_${key}_model`);
+                const modelIndex = newExplorerData.items[1].items.findIndex(
+                  (file) => file.id === `${featureId}_${key}_model`
+                );
                 if (modelIndex !== -1) {
                   newExplorerData.items[1].items.splice(modelIndex, 1);
                 }
               }
             });
-          } else if (keys.includes('code')) {
+          } else if (keys.includes("code")) {
             // Handle non-nested feature with 'code'
             const routeFile = {
               id: `${featureId}_code`,
-              name: `${feature.name.toLowerCase().replace(/\s+/g, '_')}.js`,
+              name: `${feature.name.toLowerCase().replace(/\s+/g, "_")}.js`,
               isFolder: false,
               items: [],
               code: feature.code,
             };
             newExplorerData.items[0].items.push(routeFile);
-  
+
             // Always add model file if schema exists
             const modelFile = {
               id: `${featureId}_code_model`,
-              name: `${feature.name.toLowerCase().replace(/\s+/g, '_')}_model.js`,
+              name: `${feature.name
+                .toLowerCase()
+                .replace(/\s+/g, "_")}_model.js`,
               isFolder: false,
               items: [],
               code: feature.schema,
@@ -212,23 +227,27 @@ function Editor() {
             newExplorerData.items[1].items.push(modelFile);
           } else {
             // Remove route file if 'code' is not selected
-            const routeIndex = newExplorerData.items[0].items.findIndex(file => file.id === `${featureId}_code`);
+            const routeIndex = newExplorerData.items[0].items.findIndex(
+              (file) => file.id === `${featureId}_code`
+            );
             if (routeIndex !== -1) {
               newExplorerData.items[0].items.splice(routeIndex, 1);
             }
-  
+
             // Remove model file if 'code' is not selected
-            const modelIndex = newExplorerData.items[1].items.findIndex(file => file.id === `${featureId}_code_model`);
+            const modelIndex = newExplorerData.items[1].items.findIndex(
+              (file) => file.id === `${featureId}_code_model`
+            );
             if (modelIndex !== -1) {
               newExplorerData.items[1].items.splice(modelIndex, 1);
             }
           }
         }
       });
-  
+
       // Update state with the new explorerData
       setExplorerData(newExplorerData);
-  
+
       // Update selectedFeatures state to reflect the actual selection
       setSelectedFeatures(
         Object.entries(selectedFeatures).map(([featureId, keys]) => ({
@@ -239,7 +258,7 @@ function Editor() {
     },
     [features]
   );
-  
+
   const handleFileClick = (file) => {
     setSelectedFile(file);
   };
@@ -253,37 +272,76 @@ function Editor() {
       })
       .catch((error) => console.error("Error generating project:", error));
   };
-  
+
   const handleDownloadProject = () => {
     window.location.href = "http://localhost:3002/download";
   };
 
   return (
-    
-    <div className="editor flex">
-  <div className="ls flex flex-1">
-    <FileSystem
-      explorerData={explorerData}
-      handleInsertNode={insertNode}
-      handleFileClick={handleFileClick}
-    />
-    <div className="flex-1">
-      <CodeEditor code={selectedFile?.code || ""} />
-    </div>
-  </div>
-  <div className="rs flex flex-col items-center">
-    <FeatureList
-      features={features}
-      onSelectFeatures={handleSelectFeatures}
-    />
-    <button onClick={handleGenerateProject}>Generate Project</button>
+    // <div className="editorWraper">
+    //   <div className="ls">
+    //     <div className="fileSystem">
+    //       <FileSystem
+    //         explorerData={explorerData}
+    //         handleInsertNode={insertNode}
+    //         handleFileClick={handleFileClick}
+    //       />
+    //     </div>
+    //     <div className="editor">
+    //       <CodeEditor code={selectedFile?.code || ""} />
+    //     </div>
+    //   </div>
+    //   <div className="rs ">
+    //     <FeatureList
+    //       features={features}
+    //       onSelectFeatures={handleSelectFeatures}
+    //     />
+    //     <button onClick={handleGenerateProject}>Generate Project</button>
 
-    {downloadPath && (
-      <button onClick={handleDownloadProject}>Download Project</button>
-    )}
-  </div>
-</div>
+    //     {downloadPath && (
+    //       <button onClick={handleDownloadProject}>Download Project</button>
+    //     )}
+    //   </div>
+    // </div>
+    <div className="flex h-screen w-screen">
+      <div className="flex flex-col w-[20%] border-r bg-muted p-4">
+        <div className="overflow-y-auto">
+          <FileSystem
+            explorerData={explorerData}
+            handleInsertNode={insertNode}
+            handleFileClick={handleFileClick}
+          />
+        </div>
+      </div>
+
+      <div className="flex-1 p-4">
+        <div className="h-full overflow-y-auto rounded-lg bg-background p-4 shadow">
+          <CodeEditor code={selectedFile?.code || ""} />
+        </div>
+      </div>
+
+      <div className="flex flex-col w-[20%] border-l bg-muted p-4">
+        <FeatureList
+          features={features}
+          onSelectFeatures={handleSelectFeatures}
+        />
+        <button
+          onClick={handleGenerateProject}
+          className="mt-4 w-full rounded-lg bg-primary text-primary-foreground p-2"
+        >
+          Generate Project
+        </button>
+        {downloadPath && (
+          <button
+            onClick={handleDownloadProject}
+            className="mt-2 w-full rounded-lg bg-secondary text-secondary-foreground p-2"
+          >
+            Download Project
+          </button>
+        )}
+      </div>
+    </div>
   );
 }
 
-export default Editor;  
+export default Editor;
