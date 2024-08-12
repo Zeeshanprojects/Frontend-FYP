@@ -95,10 +95,10 @@ export function Dashboard() {
                 href="/orders"
                 className="text-muted-foreground hover:text-foreground"
               >
-                Orders
+                Pricing
               </Link>
               <Link
-                href="/products"
+                href="/pricing"
                 className="text-muted-foreground hover:text-foreground"
               >
                 Products
@@ -181,9 +181,9 @@ export function Dashboard() {
             </Card>
             <Card>
               <CardHeader>
-                <CardTitle>Plugins Directory</CardTitle>
+                <CardTitle>Projects</CardTitle>
                 <CardDescription>
-                  The directory within your project, in which your plugins are
+                  The directory within your project, in which your projects are
                   located.
                 </CardDescription>
               </CardHeader>

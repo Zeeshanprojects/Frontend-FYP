@@ -37,12 +37,16 @@ export const Header1 = () => {
       title: "Editor",
       href: "/editor", // Redirects to the editor page
     },
+    {
+      title: "Playground",
+      href: "/playground", // Redirects to the editor page
+    },
     // {
     //   title: "playground",
     //   href: "/", // Corrected to /contact-us
     // },
     {
-      title: "Product",
+      title: "Others",
       description: "Managing a small business today is already tough.",
       items: [
         {
