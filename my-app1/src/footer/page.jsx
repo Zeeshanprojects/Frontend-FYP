@@ -21,7 +21,7 @@ export const Footer1 = () => {
         },
         
         {
-          title: "Term and Cnditin",
+          title: "Term and Condition",
           href: "/term-and-condition",
         },
       ]
@@ -73,7 +73,7 @@ export const Footer1 = () => {
   ];
 
   return (
-    <div className="w-full py-20 lg:py-40 bg-foreground text-background">
+    <div className="w-full py-20  bg-foreground text-background">
       <div className="container mx-auto">
         <div className="grid lg:grid-cols-2 gap-10 items-center">
           <div className="flex gap-8 flex-col items-start">

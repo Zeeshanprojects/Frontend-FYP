@@ -1,9 +1,9 @@
 import { MoveRight, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
+import Link from "next/link";
 
 export const Hero1 = () => (
-  <div className="w-full">
+  <div className="w-full ">
     <div className="container mx-auto">
       <div className="flex gap-8 py-20 lg:py-40 items-center justify-center flex-col">
         <div>
@@ -21,11 +21,9 @@ export const Hero1 = () => (
           </p>
         </div>
         <div className="flex flex-row gap-3">
-          <Button size="lg" className="gap-4" variant="outline">
-            Jump on a call <PhoneCall className="w-4 h-4" />
-          </Button>
-          <Button size="lg" className="gap-4">
-            Sign up here <MoveRight className="w-4 h-4" />
+         
+        <Button>
+            <Link href="/signup">Get Started for Free</Link>
           </Button>
         </div>
       </div>

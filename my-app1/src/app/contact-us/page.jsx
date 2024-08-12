@@ -10,12 +10,17 @@ import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { Header1 } from "@/header/page";
+import { Footer } from "react-day-picker";
+import { Footer1 } from "@/footer/page";
 
 export const Contact1 = () => {
   const [date, setDate] = useState(new Date());
 
   return (
-    <div className="w-full py-20 ">
+    <>
+    <Header1/>
+ <div className="w-full py-20 ">
       <div className="container max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-10">
           <div className="flex flex-col gap-6">
@@ -112,5 +117,9 @@ export const Contact1 = () => {
         </div>
       </div>
     </div>
+   <Footer1/>
+    </>
+   
   );
 };
+export default Contact1
