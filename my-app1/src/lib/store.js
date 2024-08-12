@@ -23,4 +23,5 @@ const makeStore = () => {
 }
 
 export const store = makeStore();
-persistStore(store);
+// persistStore(store);
+export const persistor = persistStore(store);

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, useCallback } from "react";
-
+import { store, persistor } from "@/lib/store";
 import axios from "axios";
 import MonacoEditor from "react-monaco-editor";
 import styles from "./editor.module.css";
@@ -32,6 +32,11 @@ import { useSelector } from "react-redux";
 
 //   return <div>{renderTree(explorerData)}</div>;
 // };
+const clearPersistedState = () => {
+  store.dispatch({ type: "RESET" }); // Reset Redux state
+  persistor.purge(); // Clear persisted storage
+  // setFeatures([]);
+};
 
 const FileSystem = ({ explorerData, handleInsertNode, handleFileClick }) => {
   const renderTree = (node) => (
@@ -238,13 +243,12 @@ function Editor() {
 
   useEffect(() => {
     if (allFeatures && allFeatures.length > 0) {
-      
       console.log("allFeatures------>", allFeatures);
 
       function updateIds(array) {
         return array.map((item, index) => ({
           ...item,
-          id: index + 1, // Assign a new unique id based on the index
+          id: index, // Assign a new unique id based on the index
         }));
       }
       setFeatures(updateIds(allFeatures));
@@ -262,7 +266,14 @@ function Editor() {
   //     .then((response) => setFeatures(response.data))
   //     .catch((error) => console.error("Error fetching features:", error));
   // }, []);
-
+  const handleClearState = () => {
+    clearPersistedState();
+    // Optionally, you can re-fetch the features or reset to initial state here
+    axios
+      .get("http://localhost:3002/features")
+      .then((response) => setFeatures(response.data))
+      .catch((error) => console.error("Error fetching features:", error));
+  };
   const handleSelectFeatures = useCallback(
     (selectedFeatures) => {
       // Initialize a new copy of explorerData
@@ -402,6 +413,12 @@ function Editor() {
   return (
     <div className="flex h-screen overflow-hidden">
       <div className="flex flex-col w-[25%] border-r bg-background p-4 overflow-y-auto">
+        <button
+          onClick={handleClearState}
+          className="mb-4 w-full rounded-lg bg-secondary text-secondary-foreground p-2"
+        >
+          Reset Features
+        </button>
         <FileSystem
           explorerData={explorerData}
           handleInsertNode={insertNode}

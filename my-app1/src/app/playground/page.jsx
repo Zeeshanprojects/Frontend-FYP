@@ -225,14 +225,8 @@ export default function Dashboard() {
       <div className="flex flex-col">
         <header className="sticky top-0 z-10 flex h-[53px] items-center gap-1 border-b bg-background px-4">
           <h1 className="text-xl font-semibold">Playground</h1>
-          <Button variant="outline">
-            <Link href="/editor">Go ti Editor</Link>
-          </Button>       
-          
-          <Button variant="outline">
-            <Link href="/login">Logout</Link>
-          </Button>    
-             <Drawer>
+
+          <Drawer>
             <DrawerTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden">
                 <Settings className="size-4" />
@@ -351,14 +345,17 @@ export default function Dashboard() {
               </form> */}
             </DrawerContent>
           </Drawer>
-          <Button
-            variant="outline"
-            size="sm"
-            className="ml-auto gap-1.5 text-sm"
-          >
-            <Share className="size-3.5" />
-            Share
-          </Button>
+            {/* <Button variant="outline" className="ml-auto gap-1.5 text-sm">
+              <Link href="/login">Logout</Link>
+            </Button> */}
+            <Button
+              variant="outline"
+              size="sm"
+              className="ml-auto gap-1.5 text-sm"
+            >
+              <Share className="size-3.5" />
+              <a href="/editor">Editor</a>
+            </Button>
         </header>
         <main className="grid flex-1 gap-4 overflow-auto p-4 ">
           {/* <div
