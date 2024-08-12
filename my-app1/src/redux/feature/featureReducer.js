@@ -7,7 +7,7 @@ export const featureSlice = createSlice({
   },
   reducers: {
     addFeatures: (state, action) => {
-      state.allFeatures = action.payload;
+      state.allFeatures.push(...action.payload);
     },
     removeAllFeatures: (state) => {
       state.allFeatures = [];

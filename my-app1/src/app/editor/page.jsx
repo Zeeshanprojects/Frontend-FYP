@@ -399,7 +399,10 @@ function Editor() {
 
   const handleGenerateProject = () => {
     axios
-      .post("http://localhost:3002/generate", { selectedFeatures })
+      .post("http://localhost:3002/generate", {
+        selectedFeatures,
+        allFeatures: features,
+      })
       .then((response) => {
         alert(response.data.message);
         setDownloadPath(response.data.downloadPath);
