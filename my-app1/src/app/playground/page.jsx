@@ -1,5 +1,5 @@
 "use client";
-
+import styles from "./editor.module.css";
 import {
   Bird,
   Book,
@@ -53,6 +53,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import useFeatures from "@/hooks/use-features";
 import { useDispatch } from "react-redux";
 import { addFeatures } from "@/redux/feature/featureReducer";
+import { useRouter } from "next/navigation";
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -61,23 +62,51 @@ export default function Dashboard() {
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
   const [features, toggleFeature] = useFeatures();
+  const router = useRouter();
 
-  const handleFeature = (feature) => toggleFeature(feature);
+  // const handleFeature = (feature) => toggleFeature(feature);
+
+  const handleFeature = (feature) => {
+    if (features.length < 6 || features.some((f) => f.id === feature.id)) {
+      console.log("Toggled feature:", features);
+      toggleFeature(feature);
+    } else {
+      alert("You can only select up to 6 features.");
+    }
+  };
+  // const handleGetSelectedFeaturesCode = async (payload) => {
+  //   setLoading(true);
+
+  //   const [data, error] = await handleAsync(() =>
+  //     apiResource.post(ENDPOINTS.getSelectedFeaturesCode, payload)
+  //   ).finally(() => {
+  //     setLoading(false);
+  //     resetPrompt();
+  //   });
+  //   if (error && !data) {
+  //     console.error(error);
+  //     return;
+  //   }
+
+  //   dispatch(addFeatures(data));
+  //   router.push("/editor");
+  // };
 
   const handleGetSelectedFeaturesCode = async (payload) => {
     setLoading(true);
 
     const [data, error] = await handleAsync(() =>
       apiResource.post(ENDPOINTS.getSelectedFeaturesCode, payload)
-    ).finally(() => {
-      setLoading(false);
-      resetPrompt();
-    });
+    );
+
+    setLoading(false);
+    resetPrompt();
+
     if (error && !data) {
       console.error(error);
       return;
     }
-
+    console.log(data);
     dispatch(addFeatures(data));
   };
 
@@ -108,6 +137,21 @@ export default function Dashboard() {
 
     await getFeaturesRequest({ prompt });
   };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="text-center">
+          <div
+            className={`${styles.loader} ease-linear rounded-full border-4 border-t-4 border-primary h-12 w-12 mb-4`}
+          ></div>
+          <p className="text-lg font-medium text-muted-foreground">
+            generating...
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="grid h-screen w-full pl-[53px]">
@@ -202,7 +246,7 @@ export default function Dashboard() {
                   Configure the settings for the model and messages.
                 </DrawerDescription>
               </DrawerHeader>
-              <form className="grid w-full items-start gap-6 overflow-auto p-4 pt-0">
+              {/* <form className="grid w-full items-start gap-6 overflow-auto p-4 pt-0">
                 <fieldset className="grid gap-6 rounded-lg border p-4">
                   <legend className="-ml-1 px-1 text-sm font-medium">
                     Settings
@@ -269,7 +313,7 @@ export default function Dashboard() {
                       </SelectContent>
                     </Select>
                   </div>
-                  {/* <div className="grid gap-3">
+                  <div className="grid gap-3">
                     <Label htmlFor="temperature">Temperature</Label>
                     <Input id="temperature" type="number" placeholder="0.4" />
                   </div>
@@ -280,7 +324,7 @@ export default function Dashboard() {
                   <div className="grid gap-3">
                     <Label htmlFor="top-k">Top K</Label>
                     <Input id="top-k" type="number" placeholder="0.0" />
-                  </div> */}
+                  </div>
                 </fieldset>
                 <fieldset className="grid gap-6 rounded-lg border p-4">
                   <legend className="-ml-1 px-1 text-sm font-medium">
@@ -304,7 +348,7 @@ export default function Dashboard() {
                     <Textarea id="content" placeholder="You are a..." />
                   </div>
                 </fieldset>
-              </form>
+              </form> */}
             </DrawerContent>
           </Drawer>
           <Button
@@ -316,12 +360,12 @@ export default function Dashboard() {
             Share
           </Button>
         </header>
-        <main className="grid flex-1 gap-4 overflow-auto p-4 md:grid-cols-2 lg:grid-cols-3">
-          <div
+        <main className="grid flex-1 gap-4 overflow-auto p-4 ">
+          {/* <div
             className="relative hidden flex-col items-start gap-8 md:flex"
             x-chunk="dashboard-03-chunk-0"
-          >
-            <form className="grid w-full items-start gap-6">
+          > */}
+          {/* <form className="grid w-full items-start gap-6">
               <fieldset className="grid gap-6 rounded-lg border p-4">
                 <legend className="-ml-1 px-1 text-sm font-medium">
                   Settings
@@ -387,7 +431,7 @@ export default function Dashboard() {
                     </SelectContent>
                   </Select>
                 </div>
-                {/* <div className="grid gap-3">
+                <div className="grid gap-3">
                   <Label htmlFor="temperature">Temperature</Label>
                   <Input id="temperature" type="number" placeholder="0.4" />
                 </div>
@@ -400,7 +444,7 @@ export default function Dashboard() {
                     <Label htmlFor="top-k">Top K</Label>
                     <Input id="top-k" type="number" placeholder="0.0" />
                   </div>
-                </div> */}
+                </div>
               </fieldset>
               <fieldset className="grid gap-6 rounded-lg border p-4">
                 <legend className="-ml-1 px-1 text-sm font-medium">
@@ -428,14 +472,16 @@ export default function Dashboard() {
                   />
                 </div>
               </fieldset>
-            </form>
-          </div>
+            </form> */}
+          {/* </div> */}
           <div className="relative flex h-full min-h-[50vh] flex-col rounded-xl bg-muted/50 p-4 lg:col-span-2">
             <Badge variant="outline" className="absolute right-3 top-3">
               Output
             </Badge>
             {!!featuresList.length ? (
-              <p className="text-lg mb-5">Select Features from the list</p>
+              <p className="text-lg mb-5">
+                Select Features from the list (You can only secondary 6)
+              </p>
             ) : (
               <p className="text-xl mb-5">
                 Send a prompt to create a list of features
@@ -444,12 +490,35 @@ export default function Dashboard() {
             {!!featuresList.length && (
               <div className="flex align-middle gap-6">
                 <form
-                  onSubmit={(e) => {
+                  onSubmit={async (e) => {
                     e.preventDefault();
-                    handleGetSelectedFeaturesCode({
-                      selectedFeatureList: features,
-                    });
+                    const featureBatches = [];
+
+                    if (features.length > 4) {
+                      featureBatches.push(features.slice(0, 2)); // First 2 features
+                      featureBatches.push(features.slice(2, 4)); // Features 3 and 4
+                      featureBatches.push(features.slice(4)); // Features 5 and 6
+                    } else if (features.length > 2) {
+                      featureBatches.push(features.slice(0, 2)); // First 2 features
+                      featureBatches.push(features.slice(2)); // Features 3 and 4
+                    } else {
+                      featureBatches.push(features); // All features if 2 or fewer
+                    }
+
+                    for (const batch of featureBatches) {
+                      await handleGetSelectedFeaturesCode({
+                        selectedFeatureList: batch,
+                      });
+                    }
+
+                    router.push("/editor"); // Navigate after all requests are done
                   }}
+                  // onSubmit={(e) => {
+                  //   e.preventDefault();
+                  //   handleGetSelectedFeaturesCode({
+                  //     selectedFeatureList: features,
+                  //   });
+                  // }}
                   className="grid grid-cols-3 gap-4"
                 >
                   {featuresList.map(({ id, label }) => (
@@ -458,6 +527,10 @@ export default function Dashboard() {
                         onClick={() => handleFeature({ id, label })}
                         className={"mr-2"}
                         id={id}
+                        disabled={
+                          features.length >= 6 &&
+                          !features.some((f) => f.id === id)
+                        }
                       />
                       <Label htmlFor={id}>{label}</Label>
                     </div>
