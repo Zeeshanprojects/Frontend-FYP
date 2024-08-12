@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { auth, googleProvider } from "../firebase/config"; // Adjust the path as needed
@@ -34,21 +34,59 @@ export function SignUP() {
       console.error("Error signing up: ", err);
     }
   };
-
   const handleGoogleSignIn = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
-      // This gives you a Google Access Token. You can use it to access Google APIs.
-      const user = result.user;
-      console.log("User signed in with Google: ", user);
-
-      // Redirect to the editor page
-      router.push("/editorpage");
+      console.log("User signed in with Google:", result);
+      sessionStorage.setItem("user", true);
+      router.push('/playground');
     } catch (error) {
-      setError(error.message);
-      console.error("Error signing in with Google: ", error);
+      console.error("Error signing in with Google:", error.message);
     }
   };
+
+  // const handleGoogleSignIn = async () => {
+  //   try {
+  //     const result = await signInWithPopup(auth, googleProvider);
+  //     const user = result.user;
+  //     console.log("User signed in with Google: ", user);
+
+  //     // Redirect to the editor page
+  //     router.push("/editor");
+  //   } catch (error) {
+  //     setError(error.message);
+  //     console.error("Error signing in with Google: ", error);
+
+  //     // Provide more user-friendly feedback
+  //     alert("There was an error signing in with Google. Please try again.");
+  //   }
+  // };
+
+  // const handleGoogleSignIn = async () => {
+  //   const router = useRouter(); // Initialize router if using Next.js
+  //   const [error, setError] = useState(''); // Initialize state for error handling
+  
+  //   try {
+  //     const result = await signInWithPopup(auth, googleProvider);
+  //     const user = result.user;
+  
+  //     if (user) {
+  //       console.log('User signed in with Google:', user);
+  
+  //       // Redirect to the editor page
+  //       router.push('/editor');
+  //     } else {
+  //       console.error('No user object returned from Google sign-in');
+  //       alert('Sign-in failed. Please try again.');
+  //     }
+  //   } catch (error) {
+  //     setError(error.message);
+  //     console.error('Error signing in with Google:', error);
+  
+  //     // Provide more user-friendly feedback
+  //     alert('There was an error signing in with Google. Please try again.');
+  //   }
+  // };
 
   return (
     <div className="flex items-center justify-center min-h-screen">
@@ -115,8 +153,8 @@ export function SignUP() {
             </div>
           </form>
           <div className="mt-4 text-center">
-            <Button onClick={handleGoogleSignIn} className="w-full">
-              Sign in with Google
+            <Button  className="w-full"  onClick={handleGoogleSignIn}>
+               Sign in with Google   
             </Button>
           </div>
           <div className="mt-4 text-center text-sm">

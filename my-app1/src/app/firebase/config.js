@@ -3,11 +3,11 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBik3uW7fcL29764-QqHcMTylHtV1nftiQ",
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
+  authDomain: "fir-authentication-5fade.firebaseapp.com,",
+  projectId: "fir-authentication-5fade",
+  storageBucket: "fir-authentication-5fade.appspot.com",
+  messagingSenderId: "99412828156",
+  appId: "1:99412828156:web:6cfd732d0ec214d267dc79"
 };
 
 // Initialize Firebase

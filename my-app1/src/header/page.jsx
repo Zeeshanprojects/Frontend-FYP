@@ -11,8 +11,13 @@ import {
 import { Menu, MoveRight, X } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
-
+import { usePathname } from "next/navigation";
+import Image from "next/image";
 export const Header1 = () => {
+
+  const pathname = usePathname()
+
+  console.log(pathname,"ajjaja")
   const handleLogout = async () => {
     try {
       await signOut(auth);
@@ -32,10 +37,10 @@ export const Header1 = () => {
       title: "Editor",
       href: "/editor", // Redirects to the editor page
     },
-    {
-      title: "playground",
-      href: "/playground", // Corrected to /contact-us
-    },
+    // {
+    //   title: "playground",
+    //   href: "/", // Corrected to /contact-us
+    // },
     {
       title: "Product",
       description: "Managing a small business today is already tough.",
@@ -128,9 +133,9 @@ export const Header1 = () => {
           </p>
         </div>
         <div className="flex justify-end w-full gap-4">
-          <Button variant="ghost" className="hidden md:inline" onClick={handleLogout}>
+          {/* <Button variant="ghost" className="hidden md:inline" onClick={handleLogout}>
             <Link href="#">Log out</Link>
-          </Button>
+          </Button> */}
           <div className="border-r hidden md:inline"></div>
           <Button variant="outline">
             <Link href="/login">Sign in</Link>

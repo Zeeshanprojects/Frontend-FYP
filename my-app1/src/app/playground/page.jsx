@@ -41,6 +41,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import Link from "next/link";
 export default function Dashboard() {
   return (
     <div className="grid h-screen w-full pl-[53px]">
@@ -114,7 +115,14 @@ export default function Dashboard() {
       <div className="flex flex-col">
         <header className="sticky top-0 z-10 flex h-[53px] items-center gap-1 border-b bg-background px-4">
           <h1 className="text-xl font-semibold">Playground</h1>
-          <Drawer>
+          <Button variant="outline">
+            <Link href="/editor">Go ti Editor</Link>
+          </Button>       
+          
+          <Button variant="outline">
+            <Link href="/login">Logout</Link>
+          </Button>    
+             <Drawer>
             <DrawerTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden">
                 <Settings className="size-4" />
