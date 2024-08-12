@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { auth, googleProvider } from "../firebase/config"; // Adjust the path as needed
+import { auth } from "../firebase/config"; // Adjust the path as needed
 import { signInWithEmailAndPassword } from "firebase/auth";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -22,26 +22,6 @@ export function LoginForm() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
-
-  // const handleLogin = async (e) => {
-  //   e.preventDefault();
-  //   setError("");
-  //   try {
-  //     const userCredential = await signInWithEmailAndPassword(auth, email, password);
-  //     console.log("User logged in: ", userCredential.user);
-
-  //     if (userCredential.user) {
-  //       router.push("/editor");
-  //     }
-  //   } catch (err) {
-  //     setError("You don't have an account. Redirecting to signup...");
-  //     alert("You don't have an account. Redirecting to signup...");
-  //     console.error("Error logging in: ", err);
-  //     setTimeout(() => {
-  //       router.push("/signup");
-  //     }, 2000); // Delay the redirect to give the user time to see the alert
-  //   }
-  // };
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -69,17 +49,6 @@ export function LoginForm() {
     }
   };
 
-  const handleGoogleSignIn = async () => {
-    try {
-      const result = await signInWithPopup(auth, googleProvider);
-      console.log("User signed in with Google:", result);
-      sessionStorage.setItem("user", true);
-      router.push('/dashboard');
-    } catch (error) {
-      console.error("Error signing in with Google:", error.message);
-    }
-  };
-
   return (
     <>
       <div className="mylogodv">
@@ -92,7 +61,7 @@ export function LoginForm() {
           />
         </Link>
       </div>
-      <div className="flex items-center justify-center min-h-screen bg-gray-100 mt-5">
+      <div className="flex items-center justify-center min-h-screen  mt-20"> {/* Adjusted margin-top */}
         <Card className="mx-auto max-w-sm">
           <CardHeader>
             <CardTitle className="text-2xl">Login</CardTitle>
@@ -144,11 +113,7 @@ export function LoginForm() {
               <Link href="/signup" className="underline">
                 Sign up
               </Link>
-              <Button  className="w-full"  onClick={handleGoogleSignIn}>
-               Sign in with Google   
-            </Button>
             </div>
-          
           </CardContent>
         </Card>
       </div>
