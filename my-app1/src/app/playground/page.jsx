@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Bird,
   Book,
@@ -15,6 +17,7 @@ import {
   SquareUser,
   Triangle,
   Turtle,
+  Code,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -42,7 +45,70 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import Link from "next/link";
+import apiResource from "@/services/api-resource";
+import ENDPOINTS from "@/services/api-endpoints";
+import { handleAsync } from "@/services/service-helpers";
+import { useState } from "react";
+import { Checkbox } from "@/components/ui/checkbox";
+import useFeatures from "@/hooks/use-features";
+import { useDispatch } from "react-redux";
+import { addFeatures } from "@/redux/feature/featureReducer";
+
 export default function Dashboard() {
+  const dispatch = useDispatch();
+
+  const [featuresList, setFeaturesList] = useState([]);
+  const [prompt, setPrompt] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [features, toggleFeature] = useFeatures();
+
+  const handleFeature = (feature) => toggleFeature(feature);
+
+  const handleGetSelectedFeaturesCode = async (payload) => {
+    setLoading(true);
+
+    const [data, error] = await handleAsync(() =>
+      apiResource.post(ENDPOINTS.getSelectedFeaturesCode, payload)
+    ).finally(() => {
+      setLoading(false);
+      resetPrompt();
+    });
+    if (error && !data) {
+      console.error(error);
+      return;
+    }
+
+    dispatch(addFeatures(data));
+  };
+
+  const resetPrompt = () => {
+    setPrompt("");
+  };
+
+  const getFeaturesRequest = async (payload) => {
+    setLoading(true);
+
+    const [data, error] = await handleAsync(() =>
+      apiResource.post(ENDPOINTS.getFeaturesList, payload)
+    ).finally(() => {
+      setLoading(false);
+      resetPrompt();
+    });
+
+    if (error && !data) {
+      console.error(error);
+      return;
+    }
+
+    setFeaturesList(data);
+  };
+
+  const getFeaturesFromPrompt = async (prompt = "") => {
+    if (typeof prompt !== "string") return console.warn("Invalid params");
+
+    await getFeaturesRequest({ prompt });
+  };
+
   return (
     <div className="grid h-screen w-full pl-[53px]">
       <aside className="inset-y fixed  left-0 z-20 flex h-full flex-col border-r">
@@ -52,64 +118,64 @@ export default function Dashboard() {
           </Button>
         </div>
         <nav className="grid gap-1 p-2">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-lg bg-muted"
-                aria-label="Playground"
-              >
-                <SquareTerminal className="size-5" />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-lg"
-                aria-label="Models"
-              >
-                <Bot className="size-5" />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-lg"
-                aria-label="API"
-              >
-                <Code2 className="size-5" />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-lg"
-                aria-label="Documentation"
-              >
-                <Book className="size-5" />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-lg"
-                aria-label="Settings"
-              >
-                <Settings2 className="size-5" />
-              </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="rounded-lg bg-muted"
+            aria-label="Playground"
+          >
+            <SquareTerminal className="size-5" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="rounded-lg"
+            aria-label="Models"
+          >
+            <Bot className="size-5" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="rounded-lg"
+            aria-label="API"
+          >
+            <Code2 className="size-5" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="rounded-lg"
+            aria-label="Documentation"
+          >
+            <Book className="size-5" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="rounded-lg"
+            aria-label="Settings"
+          >
+            <Settings2 className="size-5" />
+          </Button>
         </nav>
         <nav className="mt-auto grid gap-1 p-2">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="mt-auto rounded-lg"
-                aria-label="Help"
-              >
-                <LifeBuoy className="size-5" />
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="mt-auto rounded-lg"
-                aria-label="Account"
-              >
-                <SquareUser className="size-5" />
-              </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="mt-auto rounded-lg"
+            aria-label="Help"
+          >
+            <LifeBuoy className="size-5" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="mt-auto rounded-lg"
+            aria-label="Account"
+          >
+            <SquareUser className="size-5" />
+          </Button>
         </nav>
       </aside>
       <div className="flex flex-col">
@@ -368,9 +434,55 @@ export default function Dashboard() {
             <Badge variant="outline" className="absolute right-3 top-3">
               Output
             </Badge>
-            <p>asdasdasds</p>
+            {!!featuresList.length ? (
+              <p className="text-lg mb-5">Select Features from the list</p>
+            ) : (
+              <p className="text-xl mb-5">
+                Send a prompt to create a list of features
+              </p>
+            )}
+            {!!featuresList.length && (
+              <div className="flex align-middle gap-6">
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    handleGetSelectedFeaturesCode({
+                      selectedFeatureList: features,
+                    });
+                  }}
+                  className="grid grid-cols-3 gap-4"
+                >
+                  {featuresList.map(({ id, label }) => (
+                    <div className="flex align-middle" key={id}>
+                      <Checkbox
+                        onClick={() => handleFeature({ id, label })}
+                        className={"mr-2"}
+                        id={id}
+                      />
+                      <Label htmlFor={id}>{label}</Label>
+                    </div>
+                  ))}
+
+                  <div>
+                    <Button
+                      disabled={loading || featuresList.length == 0}
+                      type="submit"
+                      size="sm"
+                      className="ml-auto gap-1.5"
+                    >
+                      Get Code
+                      <CornerDownLeft className="size-3.5" />
+                    </Button>
+                  </div>
+                </form>
+              </div>
+            )}
             <div className="flex-1" />
             <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                getFeaturesFromPrompt(prompt);
+              }}
               className="relative overflow-hidden rounded-lg border bg-background focus-within:ring-1 focus-within:ring-ring"
               x-chunk="dashboard-03-chunk-1"
             >
@@ -378,22 +490,30 @@ export default function Dashboard() {
                 Message
               </Label>
               <Textarea
+                disabled={loading || !!featuresList.length}
+                onChange={(e) => setPrompt(e.target.value)}
+                value={prompt}
                 id="message"
                 placeholder="Type your message here..."
                 className="min-h-12 resize-none border-0 p-3 shadow-none focus-visible:ring-0"
               />
               <div className="flex items-center p-3 pt-0">
-                <Button variant="ghost" size="icon">
+                <Button disabled={true} variant="ghost" size="icon">
                   <Paperclip className="size-4" />
                   <span className="sr-only">Attach file</span>
                 </Button>
-                <Button variant="ghost" size="icon">
+                <Button disabled={true} variant="ghost" size="icon">
                   <Mic className="size-4" />
                   <span className="sr-only">Use Microphone</span>
                 </Button>
-                <Button type="submit" size="sm" className="ml-auto gap-1.5">
+                <Button
+                  disabled={loading || !!featuresList.length}
+                  type="submit"
+                  size="sm"
+                  className="ml-auto gap-1.5"
+                >
                   Send Message
-                  <CornerDownLeft className="size-3.5" />
+                  <Code className="size-3.5" />
                 </Button>
               </div>
             </form>
