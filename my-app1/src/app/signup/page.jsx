@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { auth, googleProvider } from "../firebase/config"; // Adjust the path as needed
+import { auth} from "../firebase/config"; // Adjust the path as needed
 import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -27,23 +27,14 @@ export function SignUP() {
       // Show alert box and redirect after 5 seconds
       alert("User registered successfully!");
       setTimeout(() => {
-        router.push("/editorpage");
+        router.push("/playground");
       }, 5000);
     } catch (err) {
       setError(err.message);
       console.error("Error signing up: ", err);
     }
   };
-  const handleGoogleSignIn = async () => {
-    try {
-      const result = await signInWithPopup(auth, googleProvider);
-      console.log("User signed in with Google:", result);
-      sessionStorage.setItem("user", true);
-      router.push('/playground');
-    } catch (error) {
-      console.error("Error signing in with Google:", error.message);
-    }
-  };
+  
 
   // const handleGoogleSignIn = async () => {
   //   try {
@@ -152,11 +143,7 @@ export function SignUP() {
               </Button>
             </div>
           </form>
-          <div className="mt-4 text-center">
-            <Button  className="w-full"  onClick={handleGoogleSignIn}>
-               Sign in with Google   
-            </Button>
-          </div>
+         
           <div className="mt-4 text-center text-sm">
             Already have an account?{" "}
             <Link href="/login" className="underline">
